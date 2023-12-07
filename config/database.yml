@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  pool: 5
+
+development:
+  <<: *default
+  database: app_development
+
+test:
+  <<: *default
+  database: app_test
+
+production:
+  <<: *default
+  database: mount_docker_production
+  username: mount_docker
+  password: <%= ENV["MOUNT_DOCKER_DATABASE_PASSWORD"] %>
